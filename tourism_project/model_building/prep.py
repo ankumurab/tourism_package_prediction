@@ -14,7 +14,14 @@ from huggingface_hub import login, HfApi
 # Load the dataset directly from the Hugging Face data space.
 api = HfApi(token=os.getenv("HF_TOKEN"))
 DATASET_PATH = "hf://datasets/nishithworld/tourism-package-prediction/tourism.csv"
-df = pd.read_csv(DATASET_PATH)
+#df = pd.read_csv(DATASET_PATH)
+df = pd.read_csv(
+    DATASET_PATH,
+    storage_options={
+        "token": os.getenv("HF_TOKEN"),
+        "timeout": 60
+    }
+)
 print("Dataset loaded successfully.")
 
 # Perform data cleaning and remove any unnecessary columns
