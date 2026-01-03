@@ -85,7 +85,7 @@ numeric_pipeline = Pipeline([
 #categorical
 categorical_pipeline = Pipeline([
     ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("encoder", OneHotEncoder(handle_unknown="ignore", sparse=False))
+    ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
 ])
 
 # Set the clas weight to handle class imbalance
