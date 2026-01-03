@@ -28,6 +28,7 @@ st.set_page_config(
     initial_sidebar_state="auto",
 )
 
+# Setting up the Web Canvas
 st.title("✈️ Wellness Tourism Package Purchase Predictor")
 st.markdown("### Enter customer details to predict the likelihood of purchasing the Wellness Tourism Package.")
 
@@ -80,7 +81,7 @@ input_data = pd.DataFrame({
     'OwnCar': [own_car]
 })
 
-if st.button("Predict Purchase"): 
+if st.button("Predict Purchase"):
     st.markdown("---")
     try:
         prediction_proba = model.predict_proba(input_data)[:, 1]
@@ -93,7 +94,7 @@ if st.button("Predict Purchase"):
             st.balloons()
         else:
             st.info(f"#### The customer is UNLIKELY to purchase the Wellness Tourism Package. (Probability: {prediction_proba[0]:.2f})")
-        
+
         st.markdown(f"*Probability of purchase: **{prediction_proba[0]:.2f}***")
 
     except Exception as e:

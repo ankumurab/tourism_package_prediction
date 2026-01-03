@@ -100,7 +100,7 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-#Define a model and parameters  
+#Define a model and parameters
 
 # Define base XGBoost model
 xgb_model = xgb.XGBClassifier(scale_pos_weight=class_weight, random_state=42)
@@ -120,8 +120,8 @@ model_pipeline = make_pipeline(preprocessor, xgb_model)
 
 # Start MLflow run
 with mlflow.start_run():
-    #Tune the model with the defined parameters 
-    # Hyperparameter tuning 
+    #Tune the model with the defined parameters
+    # Hyperparameter tuning
     grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, n_jobs=-1)
     grid_search.fit(Xtrain, ytrain)
 
@@ -138,7 +138,7 @@ with mlflow.start_run():
             mlflow.log_metric("mean_test_score", mean_score)
             mlflow.log_metric("std_test_score", std_score)
 
-    #Evaluating the model performance 
+    #Evaluating the model performance
 
     # Log best parameters separately in main run
     mlflow.log_params(grid_search.best_params_)
